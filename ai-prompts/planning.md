@@ -60,6 +60,26 @@ can you map each checkbox to which part of the system will cover it (frontend / 
 Mapped every checkbox in root `acceptance-criteria.md` (and Cursor working copy) to Frontend / Backend / DB / Tests / Docs. UI flows → Frontend+Backend+DB; validation/errors → mainly Backend; status machine proof → Tests; persistence → DB; secrets/docs → Docs.
 
 **Accepted:**
+Yes
+
+**Changed:**
+No
+
+**Rejected / why:**
+No
+
+---
+
+## Prompt 4
+
+**Prompt:**
+now fill the implementation-plan.md file with a practical task breakdown.
+milestones should be: db -> backend -> frontend -> tests -> docs.
+
+**Response summary:**
+Filled M1–M5 (DB, Backend, Frontend, Tests, Docs) with concrete tasks, exit checks, day-to-day order, Cursor AI usage per milestone, risks/mitigations, and Stretch out of scope.
+
+**Accepted:**
 
 **Changed:**
 
