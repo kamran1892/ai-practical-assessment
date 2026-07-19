@@ -116,6 +116,25 @@ function validateCreateTicketBody(body) {
   return { title, description, priority, createdBy, assignedTo };
 }
 
+function validateChangeStatusBody(body) {
+  if (!isPlainObject(body)) {
+    throw new AppError(400, 'Request body must be a JSON object');
+  }
+
+  if (body.status === undefined || body.status === null || body.status === '') {
+    throw new AppError(400, 'status is required');
+  }
+
+  if (typeof body.status !== 'string' || !STATUSES.includes(body.status)) {
+    throw new AppError(
+      400,
+      `Invalid status value. Allowed values: ${STATUSES.join(', ')}`
+    );
+  }
+
+  return { status: body.status };
+}
+
 function validateUpdateTicketBody(body) {
   if (!isPlainObject(body)) {
     throw new AppError(400, 'Request body must be a JSON object');
@@ -191,4 +210,5 @@ module.exports = {
   validateListQuery,
   validateCreateTicketBody,
   validateUpdateTicketBody,
+  validateChangeStatusBody,
 };

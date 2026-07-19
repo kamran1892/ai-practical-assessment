@@ -305,7 +305,42 @@ Same shape as get ticket detail (including `comments`).
 
 ---
 
-## 7. Add comment (nested)
+## 7. List comments (nested)
+
+- Method: `GET`
+- Path: `/api/tickets/:id/comments`
+- Purpose: List comments for one ticket (also embedded in ticket detail)
+
+### Request
+
+No body. `:id` = ticket id.
+
+### Response `200`
+
+```json
+[
+  {
+    "id": 1,
+    "message": "Looking into this",
+    "createdBy": { "id": 2, "name": "Bob" },
+    "createdAt": "2026-07-18T11:00:00.000Z"
+  }
+]
+```
+
+### Validation Rules
+
+- `:id` must be a positive integer
+- Ticket must exist
+
+### Error Responses
+
+- `404` — ticket not found
+- `500` — server/DB error
+
+---
+
+## 8. Add comment (nested)
 
 - Method: `POST`
 - Path: `/api/tickets/:id/comments`
@@ -356,6 +391,7 @@ Same shape as get ticket detail (including `comments`).
 | `GET` | `/api/tickets/:id` | Detail + comments |
 | `PATCH` | `/api/tickets/:id` | Update fields (not status) |
 | `PATCH` | `/api/tickets/:id/status` | Status transition |
+| `GET` | `/api/tickets/:id/comments` | List comments for ticket |
 | `POST` | `/api/tickets/:id/comments` | Add comment |
 
 ---

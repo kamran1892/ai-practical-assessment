@@ -1,4 +1,4 @@
-/** Shared allowed values. Transition rules live only in statusTransition.js (next step). */
+/** Shared allowed values. Transition rules live only in statusTransition.js. */
 
 const PRIORITIES = ['Low', 'Medium', 'High'];
 

@@ -4,6 +4,7 @@ const {
   validateListQuery,
   validateCreateTicketBody,
   validateUpdateTicketBody,
+  validateChangeStatusBody,
 } = require('../validators/ticketValidators');
 
 async function listTickets(req, res, next) {
@@ -47,9 +48,21 @@ async function updateTicket(req, res, next) {
   }
 }
 
+async function changeStatus(req, res, next) {
+  try {
+    const id = parseTicketIdParam(req.params.id);
+    const { status } = validateChangeStatusBody(req.body);
+    const ticket = await ticketService.changeStatus(id, status);
+    res.status(200).json(ticket);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   listTickets,
   getTicketById,
   createTicket,
   updateTicket,
+  changeStatus,
 };

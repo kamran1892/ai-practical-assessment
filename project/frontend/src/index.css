@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.4;
+  color: #111;
+  background: #f7f7f7;
+}
+
+a {
+  color: #0645ad;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bbb;
+  background: #fff;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+button,
+.button {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #888;
+  background: #eee;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #ddd;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+  vertical-align: top;
+}
+
+.error {
+  background: #fdecea;
+  border: 1px solid #f5c2c0;
+  color: #611a15;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.success {
+  background: #edf7ed;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.muted {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.stack {
+  display: grid;
+  gap: 8px;
+}
+
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.comment {
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.nav {
+  margin-bottom: 16px;
+}

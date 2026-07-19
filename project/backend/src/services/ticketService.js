@@ -1,5 +1,6 @@
 const AppError = require('../utils/AppError');
 const ticketQueries = require('../db/queries/tickets');
+const { assertCanTransition } = require('../domain/statusTransition');
 
 function toIso(value) {
   if (!value) return value;
@@ -84,9 +85,21 @@ async function updateTicket(id, patch) {
   return getTicketDetail(id);
 }
 
+async function changeStatus(id, nextStatus) {
+  const existing = await ticketQueries.getTicketRowById(id);
+  if (!existing) {
+    throw new AppError(404, 'Ticket not found');
+  }
+
+  assertCanTransition(existing.status, nextStatus);
+  await ticketQueries.updateTicketStatus(id, nextStatus);
+  return getTicketDetail(id);
+}
+
 module.exports = {
   listTickets,
   getTicketDetail,
   createTicket,
   updateTicket,
+  changeStatus,
 };

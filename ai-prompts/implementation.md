@@ -63,3 +63,42 @@ Implemented GET/POST /api/tickets, GET/PATCH /api/tickets/:id with validators, s
 **Changed:**
 
 **Rejected / why:**
+
+---
+
+## Prompt 4
+
+**Prompt:**
+now implement ticket status change with this state machine only:
+Open -> In Progress
+In Progress -> Resolved
+Resolved -> Closed
+Open -> Cancelled
+In Progress -> Cancelled
+any other transition should fail with proper error.
+put transition rules in one module/service so its easy to test. also add comments api: add comment and list comments for a ticket.
+
+**Response summary:**
+Added domain/statusTransition.js as sole transition rules. PATCH /api/tickets/:id/status uses assertCanTransition. GET/POST /api/tickets/:id/comments for list/add. Updated api-contract summary.
+
+**Accepted:**
+
+**Changed:**
+
+**Rejected / why:**
+
+---
+
+## Prompt 5
+
+**Prompt:**
+scaffold React frontend: list/search/filter, create, detail (update/status/comments); show backend errors especially invalid status; simple UI; how to point to backend via env.
+
+**Response summary:**
+Vite+React+Router app in project/frontend. Added GET /api/users for dropdowns. Pages for list/create/detail; ErrorMessage shows API message; status section keeps current status and shows statusError for failed transitions. VITE_API_BASE_URL in .env.example.
+
+**Accepted:**
+
+**Changed:**
+
+**Rejected / why:**

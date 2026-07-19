@@ -125,11 +125,61 @@ async function updateTicketFields(id, patch) {
   );
 }
 
+async function updateTicketStatus(id, status) {
+  await pool.execute(
+    'UPDATE tickets SET status = :status WHERE id = :id',
+    { id, status }
+  );
+}
+
+async function insertComment({ ticketId, message, createdBy }) {
+  const [result] = await pool.execute(
+    `
+      INSERT INTO comments (ticket_id, message, created_by)
+      VALUES (:ticketId, :message, :createdBy)
+    `,
+    { ticketId, message, createdBy }
+  );
+  return result.insertId;
+}
+
+async function getCommentRowById(id) {
+  const [rows] = await pool.execute(
+    `
+      SELECT
+        c.id,
+        c.ticket_id AS ticketId,
+        c.message,
+        c.created_at AS createdAt,
+        c.created_by AS createdById,
+        u.name AS createdByName
+      FROM comments c
+      INNER JOIN users u ON u.id = c.created_by
+      WHERE c.id = :id
+      LIMIT 1
+    `,
+    { id }
+  );
+  return rows[0] || null;
+}
+
+async function ticketExists(id) {
+  const [rows] = await pool.execute(
+    'SELECT id FROM tickets WHERE id = :id LIMIT 1',
+    { id }
+  );
+  return rows.length > 0;
+}
+
 module.exports = {
   userExists,
+  ticketExists,
   listTickets,
   getTicketRowById,
   listCommentsForTicket,
   insertTicket,
   updateTicketFields,
+  updateTicketStatus,
+  insertComment,
+  getCommentRowById,
 };
