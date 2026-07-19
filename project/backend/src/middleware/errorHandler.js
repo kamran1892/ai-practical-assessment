@@ -3,10 +3,13 @@ function notFoundHandler(req, res, next) {
 }
 
 function errorHandler(err, req, res, next) {
-  // eslint-disable-next-line no-console
-  console.error(err);
-
   const statusCode = err.statusCode || 500;
+
+  if (statusCode >= 500) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+  }
+
   const message =
     statusCode === 500 ? 'Internal server error' : err.message || 'Request failed';
 

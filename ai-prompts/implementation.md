@@ -48,3 +48,18 @@ Yes
 No
 **Rejected / why:**
 No
+---
+
+## Prompt 3
+
+**Prompt:**
+implement ticket APIs create/list/get/update with validation, keyword search + status filter; no status change yet (state machine later, one place only).
+
+**Response summary:**
+Implemented GET/POST /api/tickets, GET/PATCH /api/tickets/:id with validators, service, queries. Create forces Open; PATCH rejects status field. List supports q + status. No statusTransition module yet. Smoke-tested against local MySQL.
+
+**Accepted:**
+
+**Changed:**
+
+**Rejected / why:**
