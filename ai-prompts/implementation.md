@@ -29,3 +29,22 @@ No
 
 **Rejected / why:**
 No
+
+---
+
+## Prompt 2
+
+**Prompt:**
+now scaffold the backend in project/backend. stack preference: node + express (or nest if you feel its simpler, but prefer express unless strong reason).
+connect to mysql using env vars. create basic folder structure as we discussed in LLD. health check routes.
+dont build all ticket apis yet. first make sure server starts and db connection works. tell me how to verify.
+
+**Response summary:**
+Scaffolded Express app with config/db pool, /health + /health/db, error middleware, and empty domain/controllers/services/validators/tests folders. Server pings MySQL on startup. Kept .env.example password as placeholder only.
+
+**Accepted:**
+Yes
+**Changed:**
+No
+**Rejected / why:**
+No

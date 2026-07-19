@@ -109,7 +109,22 @@ mysql -u root -p < database/seed-data/001_seed.sql
 | `tickets` | Open ×2 (one unassigned), In Progress, Resolved, Closed, Cancelled |
 | `comments` | Comments on tickets 1, 2, 3, 4 |
 
-## Next
+## Next — start backend (scaffold)
 
-1. Copy `project/backend/.env.example` → `.env` and set `DB_PASSWORD`
-2. Start backend, then frontend (once implemented)
+```bash
+cd project/backend
+cp .env.example .env
+# edit .env — set DB_PASSWORD (and DB_USER if needed)
+
+npm install
+npm run dev
+```
+
+Verify:
+
+```bash
+curl http://localhost:3001/health
+curl http://localhost:3001/health/db
+```
+
+Expect JSON `"status":"ok"`. Startup log should say `MySQL connected`. Then continue with ticket APIs / frontend.
