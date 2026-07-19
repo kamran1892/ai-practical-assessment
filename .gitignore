@@ -1,0 +1,16 @@
+# Environment / secrets
+.env
+.env.local
+**/.env
+!**/.env.example
+
+# Dependencies / build
+node_modules/
+dist/
+build/
+coverage/
+
+# Logs / OS
+*.log
+.DS_Store
+Thumbs.db
