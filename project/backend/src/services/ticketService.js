@@ -92,7 +92,19 @@ async function changeStatus(id, nextStatus) {
   }
 
   assertCanTransition(existing.status, nextStatus);
-  await ticketQueries.updateTicketStatus(id, nextStatus);
+
+  const affected = await ticketQueries.updateTicketStatus(
+    id,
+    existing.status,
+    nextStatus
+  );
+  if (!affected) {
+    throw new AppError(
+      400,
+      'Ticket status was changed by another request; refresh and try again'
+    );
+  }
+
   return getTicketDetail(id);
 }
 

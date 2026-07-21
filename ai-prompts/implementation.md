@@ -92,7 +92,13 @@ Added domain/statusTransition.js as sole transition rules. PATCH /api/tickets/:i
 ## Prompt 5
 
 **Prompt:**
-scaffold React frontend: list/search/filter, create, detail (update/status/comments); show backend errors especially invalid status; simple UI; how to point to backend via env.
+scaffold frontend in project/frontend with react.
+need:
+- ticket list with search box and status filter
+- create ticket form
+- ticket detail page where i can update fields, change status, and add comments
+show backend errors properly on UI, especially invalid status transition.
+keep UI simple, no fancy design. just usable. also tell me how to point frontend to backend url using env.
 
 **Response summary:**
 Vite+React+Router app in project/frontend. Added GET /api/users for dropdowns. Pages for list/create/detail; ErrorMessage shows API message; status section keeps current status and shows statusError for failed transitions. VITE_API_BASE_URL in .env.example.
@@ -102,3 +108,22 @@ Vite+React+Router app in project/frontend. Added GET /api/users for dropdowns. P
 **Changed:**
 
 **Rejected / why:**
+
+---
+
+## Prompt 6
+
+**Prompt:**
+update README.md with exact setup steps for mysql, backend, frontend.
+also give me a short manual test checklist for Core acceptance criteria so i can click through once.
+if anything is missing we an start for tests.
+
+**Response summary:**
+Filled README with exact MySQL/backend/frontend steps, env notes, API table, and click-through Core checklist. Noted state-machine integration tests still to do. Reset backend .env.example password placeholder.
+
+**Accepted:**
+Yes
+**Changed:**
+No
+**Rejected / why:**
+No

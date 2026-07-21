@@ -31,8 +31,10 @@ async function listTickets({ q, status } = {}) {
   const params = {};
 
   if (q) {
-    where.push('(t.title LIKE :q OR t.description LIKE :q)');
-    params.q = `%${q}%`;
+    // Escape LIKE wildcards so user input is matched literally
+    const escaped = q.replace(/[\\%_]/g, '\\$&');
+    where.push("(t.title LIKE :q ESCAPE '\\\\' OR t.description LIKE :q ESCAPE '\\\\')");
+    params.q = `%${escaped}%`;
   }
 
   if (status) {
@@ -125,11 +127,16 @@ async function updateTicketFields(id, patch) {
   );
 }
 
-async function updateTicketStatus(id, status) {
-  await pool.execute(
-    'UPDATE tickets SET status = :status WHERE id = :id',
-    { id, status }
+async function updateTicketStatus(id, fromStatus, toStatus) {
+  const [result] = await pool.execute(
+    `
+      UPDATE tickets
+      SET status = :toStatus
+      WHERE id = :id AND status = :fromStatus
+    `,
+    { id, fromStatus, toStatus }
   );
+  return result.affectedRows;
 }
 
 async function insertComment({ ticketId, message, createdBy }) {
